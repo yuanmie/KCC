@@ -93,6 +93,10 @@ abstract public class Type {
         return (FloatType)this;
     }
 
+    public FunctionType getFunctionType() {
+        return (FunctionType)this;
+    }
+
     //dosomething
 
 }
