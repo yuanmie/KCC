@@ -35,13 +35,20 @@ abstract public class ExprNode extends Node{
     }
 
     public boolean isCallable(){
-        //dosomething
-        return false;
+        try{
+            return type().isCallable();
+        }catch (Error e){
+            return false;
+        }
+
     }
 
     public boolean isPointer(){
-        //dosomething
-        return false;
+        try{
+            return type().isPointer();
+        }catch(Error e){
+            return false;
+        }
     }
 
 }
