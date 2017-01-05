@@ -97,6 +97,22 @@ abstract public class Type {
         return (FunctionType)this;
     }
 
+    public PointerType getPointerType() {
+        return (PointerType)this;
+    }
+
+    public StructType getStructType() {
+        return (StructType)this;
+    }
+    public UnionType getUnionType() {
+        return (UnionType)this;
+    }
+    public CompositeType getCompositeType() {
+        return (CompositeType)this;
+    }
+    public ArrayType getArrayType() {
+        return (ArrayType)this;
+    }
     //dosomething
 
 }
