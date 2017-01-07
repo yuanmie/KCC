@@ -30,7 +30,7 @@ public class Declarations {
     public void addDefvar(DefinedVariable var){
         defvars.add(var);
     }
-    
+
     public void addDefvars(List<DefinedVariable> vars){
         defvars.addAll(vars);
     }
