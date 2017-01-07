@@ -4,7 +4,7 @@ import ast.ExprNode;
 import ast.TypeNode;
 import type.Type;
 
-abstract class Entity {
+abstract public class Entity {
     protected String name;
     protected boolean isPrivate;
     protected TypeNode typeNode;

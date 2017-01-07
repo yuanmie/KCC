@@ -15,7 +15,7 @@ public class Params extends ParamSlots<CBCParameter>{
         return paramDescriptors;
     }
 
-    public ParamTypeRefs paramTypeRefs(){
+    public ParamTypeRefs parametersTypeRef(){
         List<TypeRef> typeRefs = new ArrayList<TypeRef>();
         for(CBCParameter param : paramDescriptors){
             typeRefs.add(param.typeNode.typeRef());

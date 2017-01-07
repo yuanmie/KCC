@@ -3,11 +3,11 @@ package ast;
 import type.Type;
 import type.TypeRef;
 
-public class SizeOfExprNode extends ExprNode{
+public class SizeofExprNode extends ExprNode{
     protected ExprNode expr;
     protected TypeNode type;
 
-    public SizeOfExprNode(ExprNode expr, TypeRef type){
+    public SizeofExprNode(ExprNode expr, TypeRef type){
         this.expr = expr;
         this.type = new TypeNode(type);
     }

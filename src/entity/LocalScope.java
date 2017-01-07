@@ -85,8 +85,13 @@ public class LocalScope extends Scope{
     public List<DefinedVariable> staticLocalVariables(){
         List<DefinedVariable> result = new ArrayList<DefinedVariable>();
         for(LocalScope s: allLocalScope()){
-
+            for(DefinedVariable var : s.variables.values()){
+                if(var.isPrivate()){
+                    result.add(var);
+                }
+            }
         }
+        return result;
     }
 
     protected List<LocalScope> allLocalScope(){

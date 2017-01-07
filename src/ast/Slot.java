@@ -14,6 +14,11 @@ public class Slot extends Node{
        offset  = Type.sizeUnknown;
    }
 
+   //todo : bit field
+    public Slot(TypeNode t, String n, ExprNode c) {
+        this(t,n);
+    }
+
     public TypeNode typeNode() {
         return typeNode;
     }
