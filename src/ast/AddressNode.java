@@ -22,6 +22,11 @@ public class AddressNode extends ExprNode{
         }
     }
 
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
+
     public void setType(Type type){
         if(this.type != null){
             throw new Error("type set twice");

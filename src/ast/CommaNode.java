@@ -10,4 +10,9 @@ public class CommaNode extends AbstractAssignNode {
     public Type type() {
         return rhs.type();
     }
+
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

@@ -32,4 +32,8 @@ public class TypedefNode extends TypeDefinition {
     public Type definingType(){
         return new UserType(name(), realTypeNode());
     }
+
+    public <T> T accept(DeclarationVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }

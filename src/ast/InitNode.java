@@ -24,4 +24,9 @@ public class InitNode extends ExprNode{
         return null;
     }
 
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
+
 }

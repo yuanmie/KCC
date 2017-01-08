@@ -19,4 +19,9 @@ public class SwitchNode extends StmtNode{
     public List<CaseNode> cases(){
         return cases;
     }
+
+    @Override
+    public <S, E> S accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

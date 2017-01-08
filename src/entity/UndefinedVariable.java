@@ -18,4 +18,8 @@ public class UndefinedVariable extends Variable{
     public boolean isInitialized(){
         return false;
     }
+
+    public <T> T accept(EntityVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }

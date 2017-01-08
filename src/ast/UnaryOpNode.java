@@ -20,6 +20,11 @@ public class UnaryOpNode extends ExprNode{
         return expr.type();
     }
 
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
+
     public void setOpType(Type t){
         this.opType = t;
     }

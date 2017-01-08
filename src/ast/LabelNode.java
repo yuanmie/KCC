@@ -17,4 +17,9 @@ public class LabelNode extends StmtNode{
     public StmtNode stmt(){
         return stmt;
     }
+
+    @Override
+    public <S, E> S accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

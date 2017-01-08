@@ -107,4 +107,15 @@ public class LocalScope extends Scope{
         }
     }
 
+    public void checkReferences() {
+        for(DefinedVariable var : variables.values()){
+            if(!var.isRefered()){
+                System.out.println("warn ununsed variable: " + var.name());
+            }
+        }
+
+        for(LocalScope c : children){
+            c.checkReferences();
+        }
+    }
 }

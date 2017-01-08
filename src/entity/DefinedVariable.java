@@ -1,5 +1,6 @@
 package entity;
 
+import ast.DeclarationVisitor;
 import ast.ExprNode;
 import ast.TypeNode;
 import type.Type;
@@ -48,5 +49,7 @@ public class DefinedVariable extends Variable{
         this.initializer = expr;
     }
 
-
+    public <T> T accept(EntityVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }

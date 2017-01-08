@@ -16,6 +16,11 @@ public class CondExprNode extends ExprNode{
         return thenExpr.type();
     }
 
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
+
     public ExprNode cond() {
         return cond;
     }

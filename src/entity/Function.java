@@ -1,12 +1,11 @@
 package entity;
 
-import ast.FuncallNode;
 import ast.TypeNode;
 import type.Type;
 
 import java.util.List;
 
-abstract class Function extends Entity{
+abstract public class Function extends Entity{
     public Function(boolean priv, TypeNode t, String name){
         super(priv, t, name);
     }

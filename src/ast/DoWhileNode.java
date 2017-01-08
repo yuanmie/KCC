@@ -17,4 +17,9 @@ public class DoWhileNode extends StmtNode{
     public ExprNode cond(){
         return cond;
     }
+
+    @Override
+    public <S, E> S accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

@@ -24,6 +24,11 @@ public class SizeofTypeNode extends ExprNode{
         return type.type();
     }
 
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
+
     public TypeNode typeNode(){
         return type;
     }

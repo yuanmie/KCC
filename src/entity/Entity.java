@@ -2,6 +2,7 @@ package entity;
 
 import ast.ExprNode;
 import ast.TypeNode;
+import compiler.TypeResolver;
 import type.Type;
 
 abstract public class Entity {
@@ -67,4 +68,10 @@ abstract public class Entity {
     public boolean isVariadic(){
         return false;
     }
+
+    public  void refered(){
+        nRefered++;
+    }
+
+    abstract public <T> T accept(EntityVisitor<T> visitor);
 }

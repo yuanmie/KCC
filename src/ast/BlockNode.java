@@ -39,4 +39,9 @@ public class BlockNode extends StmtNode{
     public void setScope(LocalScope scope){
         this.scope = scope;
     }
+
+    @Override
+    public <S, E> S accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

@@ -1,7 +1,9 @@
 package compiler;
 
 import ast.AST;
+
 import parser.Parser;
+import type.TypeTable;
 
 import java.io.File;
 import java.util.List;
@@ -28,10 +30,18 @@ public class Compiler {
         }
     }
 
-    public void compile(File file, String destPath, Options opt){
+    public void compile(File file, String destPath, Options opts){
         AST ast = Parser.parseFile(file);
-
+        TypeTable types = TypeTable.ilp32();
+        AST sem = semanticAnalyze(ast, types, opts);
     }
+
+    private AST semanticAnalyze(AST ast, TypeTable types, Options opts) {
+        new LocalResolver().resolve(ast);
+        new TypeResolver(types).resolve(ast);
+        return null;
+    }
+
     private Options parseOptions(String[] args) {
         return Options.parse(args);
     }

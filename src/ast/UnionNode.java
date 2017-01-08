@@ -22,4 +22,8 @@ public class UnionNode extends CompositeTypeDefinition{
     public Type definingType(){
         return new UnionType(name(), members());
     }
+
+    public <T> T accept(DeclarationVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }

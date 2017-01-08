@@ -1,11 +1,12 @@
 package ast;
 
 
+import entity.ConstantEntry;
 import type.TypeRef;
 
 public class FloatLiteralNode extends LiteralNode {
     protected double value;
-    //dosomething
+    protected ConstantEntry entry;
 
     public FloatLiteralNode(TypeRef ref, double value){
         super(ref);
@@ -18,5 +19,18 @@ public class FloatLiteralNode extends LiteralNode {
 
     public long rawValue(){
         return java.lang.Float.floatToRawIntBits((float)value);
+    }
+
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
+
+    public void setEntry(ConstantEntry entry) {
+        this.entry = entry;
+    }
+
+    public ConstantEntry entry(){
+        return entry;
     }
 }

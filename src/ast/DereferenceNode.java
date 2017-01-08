@@ -13,6 +13,11 @@ public class DereferenceNode extends LHSNode{
         return expr.type().baseType();
     }
 
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
+
     public ExprNode expr(){
         return expr;
     }

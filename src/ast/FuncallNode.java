@@ -39,4 +39,13 @@ public class FuncallNode extends ExprNode{
     public void replaceArgs(List<ExprNode> args){
         this.args = args;
     }
+
+    public List<ExprNode> args() {
+        return args;
+    }
+
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

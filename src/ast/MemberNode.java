@@ -36,4 +36,9 @@ public class MemberNode extends LHSNode{
     protected Type origType(){
         return baseType().memberType(member);
     }
+
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

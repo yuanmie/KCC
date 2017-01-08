@@ -31,4 +31,18 @@ public class FunctionTypeRef extends TypeRef{
     public ParamTypeRefs params() {
         return params;
     }
+
+    public String toString() {
+        StringBuffer buf = new StringBuffer();
+        buf.append(returnType.toString());
+        buf.append(" (");
+        String sep = "";
+        for (TypeRef ref : this.params.typerefs()) {
+            buf.append(sep);
+            buf.append(ref.toString());
+            sep = ", ";
+        }
+        buf.append(")");
+        return buf.toString();
+    }
 }

@@ -62,4 +62,8 @@ public class IntegerTypeRef extends TypeRef{
         IntegerTypeRef ref = (IntegerTypeRef)other;
         return name.equals(ref.name);
     }
+
+    public String toString() {
+        return name;
+    }
 }

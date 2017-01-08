@@ -58,4 +58,9 @@ public class BinaryOpNode extends ExprNode{
     public boolean isConstant() {
         return left.isConstant()
                 && right.isConstant(); }
+
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

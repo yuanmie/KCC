@@ -35,6 +35,11 @@ public class CastNode extends ExprNode{
         return expr.isAssignable();
     }
 
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
+
     public boolean isEffectiveCast(){
         return (type().isFloat() && expr.type().size() == 4 ||
         type().size() > expr.type().size());

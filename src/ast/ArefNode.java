@@ -41,4 +41,9 @@ public class ArefNode extends LHSNode{
     protected Type origType() {
         return expr.origType().baseType();
     }
+
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

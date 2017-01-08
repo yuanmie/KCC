@@ -1,5 +1,6 @@
 package ast;
 
+import entity.EntityVisitor;
 import type.CompositeType;
 import type.StructType;
 import type.Type;
@@ -22,5 +23,9 @@ public class StructNode extends CompositeTypeDefinition{
 
     public Type definingType(){
         return new StructType(name(), members());
+    }
+
+    public <T> T accept(DeclarationVisitor<T> visitor) {
+        return visitor.visit(this);
     }
 }

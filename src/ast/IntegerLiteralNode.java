@@ -21,4 +21,9 @@ public class IntegerLiteralNode extends LiteralNode{
     public long value(){
         return value;
     }
+
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

@@ -3,7 +3,7 @@ package ast;
 import type.Type;
 import type.TypeRef;
 
-public class LiteralNode extends ExprNode{
+abstract public class LiteralNode extends ExprNode{
     protected TypeNode typeNode;
 
     public LiteralNode(TypeRef ref){
@@ -22,4 +22,5 @@ public class LiteralNode extends ExprNode{
     public boolean isConstant(){
         return true;
     }
+
 }

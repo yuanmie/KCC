@@ -100,4 +100,18 @@ public class ToplevelScope extends Scope{
     }
 
 
+    public void checkReferences() {
+        for(Entity ent : entities.values()){
+            if(ent.isDefined() && ent.isPrivate()
+                    && !ent.isConstant() && !ent.isRefered()){
+                System.out.println("unused variable: " + ent.name());
+            }
+        }
+
+        for(LocalScope funcScope : children){
+            for(LocalScope s : funcScope.children){
+                s.checkReferences();
+            }
+        }
+    }
 }

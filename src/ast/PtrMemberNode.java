@@ -47,5 +47,10 @@ public class PtrMemberNode extends LHSNode{
         return dereferedCompositeType().memberType(member);
     }
 
+    @Override
+    public <S, E> E accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
+
 
 }

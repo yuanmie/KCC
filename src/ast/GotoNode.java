@@ -11,4 +11,9 @@ public class GotoNode extends StmtNode{
     public String target(){
         return target;
     }
+
+    @Override
+    public <S, E> S accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

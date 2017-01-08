@@ -3,7 +3,7 @@ package entity;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Scope {
+abstract public class Scope {
     protected List<LocalScope> children;
 
     public Scope(){

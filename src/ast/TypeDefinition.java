@@ -1,5 +1,6 @@
 package ast;
 
+import compiler.TypeResolver;
 import type.Type;
 import type.TypeRef;
 
@@ -30,4 +31,6 @@ abstract public class TypeDefinition extends Node{
     }
 
     abstract public Type definingType();
+
+    abstract public <T> T accept(DeclarationVisitor<T> visitor);
 }

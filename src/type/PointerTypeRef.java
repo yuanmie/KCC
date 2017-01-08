@@ -22,4 +22,8 @@ public class PointerTypeRef extends TypeRef{
         if (! (other instanceof PointerTypeRef)) return false;
         return baseType.equals(((PointerTypeRef)other).baseType);
     }
+
+    public String toString() {
+        return baseType.toString() + "*";
+    }
 }

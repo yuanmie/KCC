@@ -32,4 +32,25 @@ public class ForNode extends StmtNode{
 
         this.body = body;
     }
+
+    public StmtNode init() {
+        return init;
+    }
+
+    public ExprNode cond() {
+        return cond;
+    }
+
+    public StmtNode incr() {
+        return incr;
+    }
+
+    public StmtNode body() {
+        return body;
+    }
+
+    @Override
+    public <S, E> S accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

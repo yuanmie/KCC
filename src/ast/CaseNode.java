@@ -24,4 +24,9 @@ public class CaseNode extends StmtNode{
     public BlockNode body(){
         return body;
     }
+
+    @Override
+    public <S, E> S accept(ASTVisitor<S, E> visitor) {
+        return visitor.visit(this);
+    }
 }

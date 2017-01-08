@@ -6,7 +6,7 @@ public class TypeRef {
 
     }
 
-    public int hashCode(){
+    public int hashCode() {
         return toString().hashCode();
     }
 }

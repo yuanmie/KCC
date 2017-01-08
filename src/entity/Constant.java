@@ -1,5 +1,6 @@
 package entity;
 
+import ast.DeclarationVisitor;
 import ast.ExprNode;
 import ast.TypeNode;
 
@@ -31,5 +32,9 @@ public class Constant extends Entity{
 
     public ExprNode value(){
         return value;
+    }
+
+    public <T> T accept(EntityVisitor<T> visitor) {
+        return visitor.visit(this);
     }
 }
