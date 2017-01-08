@@ -39,6 +39,7 @@ public class Compiler {
     private AST semanticAnalyze(AST ast, TypeTable types, Options opts) {
         new LocalResolver().resolve(ast);
         new TypeResolver(types).resolve(ast);
+        types.semanticCheck();
         return null;
     }
 

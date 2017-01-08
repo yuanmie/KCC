@@ -1,5 +1,7 @@
 package type;
 
+import ast.Slot;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -180,6 +182,70 @@ public class TypeTable {
         return new PointerType(pointerSize, baseType);
     }
 
-    //dosomething
+    public void semanticCheck() {
+        for(Type t : types()){
+            if(t instanceof CompositeType){
+                checkVoidMembers((CompositeType)t);
+                checkDuplicatedMembers((CompositeType)t);
+            }else if(t instanceof ArrayType){
+                checkVoidMembers((ArrayType)t);
+            }
+            checkRecursiveDefinition(t);
+        }
+    }
 
+    protected void checkVoidMembers(ArrayType t) {
+        if(t.baseType().isVoid()){
+            throw new Error("array cannot contain void");
+        }
+    }
+
+    protected void checkVoidMembers(CompositeType t){
+        for(Slot s : t.members()){
+            if(s.type().isVoid()){
+                throw new Error("struct/union cannot contain void");
+            }
+        }
+    }
+
+    protected void checkDuplicatedMembers(CompositeType t){
+        Map<String, Slot> seen = new HashMap<>();
+        for(Slot s : t.members()){
+            if(seen.containsKey(s.name())){
+                throw new Error(t.toString() + "has duplicated member: " + s.name());
+            }else{
+                seen.put(s.name(), s);
+            }
+        }
+    }
+
+    protected void checkRecursiveDefinition(Type t){
+        _checkRecursiveDefinition(t, new HashMap<Type, Object>());
+    }
+
+    static final protected Object checking = new Object();
+    static final protected Object checked = new Object();
+
+    private void _checkRecursiveDefinition(Type t, HashMap<Type, Object> marks) {
+        if(marks.get(t) == checking){
+            throw new Error("recursive type definition: " + t);
+        }else if(marks.get(t) == checked){
+            return ;
+        }else{
+            marks.put(t, checking);
+            if(t instanceof CompositeType){
+                CompositeType ct = (CompositeType)t;
+                for(Slot s : ct.members()){
+                    _checkRecursiveDefinition(s.type(), marks);
+                }
+            }else if(t instanceof ArrayType){
+                ArrayType at = (ArrayType)t;
+                _checkRecursiveDefinition(at.baseType, marks);
+            }else if(t instanceof UserType){
+                UserType ut = (UserType)t;
+                _checkRecursiveDefinition(ut.realType(), marks);
+            }
+            marks.put(t, checked);
+        }
+    }
 }
