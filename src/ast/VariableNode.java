@@ -1,5 +1,6 @@
 package ast;
 
+import entity.DefinedVariable;
 import entity.Entity;
 import type.Type;
 
@@ -11,13 +12,43 @@ public class VariableNode extends LHSNode{
         this.name = name;
     }
 
+    public VariableNode(DefinedVariable var){
+        this.entity = var;
+        this.name = var.name();
+    }
+
     public String name(){
         return name;
     }
 
+    public boolean isResolved(){
+        return entity != null;
+    }
+
+    public boolean isLvalue(){
+        if(entity.isConstant()){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isAssignable(){
+        if(entity.isConstant()){
+            return false;
+        }
+        return isLoadable();
+    }
+
+    public boolean isParameter(){
+        return entity().isParameter();
+    }
+
+    public TypeNode typeNode(){
+        return entity().typeNode();
+    }
     @Override
     protected Type origType() {
-        return null;
+        return entity().type();
     }
 
     @Override

@@ -40,6 +40,7 @@ public class Compiler {
         new LocalResolver().resolve(ast);
         new TypeResolver(types).resolve(ast);
         types.semanticCheck();
+        new DereferenceChecker(types).check(ast);
         return null;
     }
 
