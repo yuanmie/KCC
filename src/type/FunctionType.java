@@ -68,7 +68,7 @@ public class FunctionType extends Type{
         }
     }
 
-    public List<Type> paramType(){
+    public List<Type> paramTypes(){
         return paramTypes.types();
     }
 

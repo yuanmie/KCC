@@ -41,7 +41,8 @@ public class Compiler {
         new TypeResolver(types).resolve(ast);
         types.semanticCheck();
         new DereferenceChecker(types).check(ast);
-        return null;
+        new TypeChecker(types).check(ast);
+        return ast;
     }
 
     private Options parseOptions(String[] args) {
