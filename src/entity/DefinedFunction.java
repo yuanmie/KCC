@@ -4,6 +4,7 @@ import ast.BlockNode;
 import ast.DeclarationVisitor;
 import ast.FuncallNode;
 import ast.TypeNode;
+import ir.Stmt;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class DefinedFunction extends Function{
     protected Params params;
     protected BlockNode body;
     protected LocalScope scope;
+    protected List<Stmt> ir;
 
     public DefinedFunction(boolean priv, TypeNode type,
                            String name, Params params,
@@ -46,6 +48,14 @@ public class DefinedFunction extends Function{
         return params.isVararg();
     }
 
+
+    public void setIR(List<Stmt> ir){
+        this.ir = ir;
+    }
+
+    public List<Stmt> ir(){
+        return ir;
+    }
     public <T> T accept(EntityVisitor<T> visitor) {
         return visitor.visit(this);
     }

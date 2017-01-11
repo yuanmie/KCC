@@ -1,6 +1,7 @@
 package ast;
 
 import entity.*;
+import ir.IR;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +89,14 @@ public class AST extends Node{
             throw new Error("must not happen: AST.constantTable is null");
         }
         return constantTable;
+    }
+
+    public IR ir(){
+        return new IR(declarations.defvars(),
+                declarations.defuns(),
+                declarations.funcdecls(),
+                scope,
+                constantTable);
     }
 
 }

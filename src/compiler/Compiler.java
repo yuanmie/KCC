@@ -2,6 +2,7 @@ package compiler;
 
 import ast.AST;
 
+import ir.IR;
 import parser.Parser;
 import type.TypeTable;
 
@@ -34,6 +35,7 @@ public class Compiler {
         AST ast = Parser.parseFile(file);
         TypeTable types = TypeTable.ilp32();
         AST sem = semanticAnalyze(ast, types, opts);
+        IR ir = new IRGenerator(types).generate(sem);
     }
 
     private AST semanticAnalyze(AST ast, TypeTable types, Options opts) {

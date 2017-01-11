@@ -1,13 +1,15 @@
 package entity;
 
-import ast.DeclarationVisitor;
+import asm.Symbol;
 import ast.ExprNode;
 import ast.TypeNode;
 import type.Type;
+import ir.Expr;
 
 public class DefinedVariable extends Variable{
     protected ExprNode initializer;
-
+    protected Expr ir;
+    protected Symbol symbol;
     protected long sequence;
 
     public DefinedVariable(boolean priv, TypeNode type,
@@ -47,6 +49,14 @@ public class DefinedVariable extends Variable{
 
     public void setInitializer(ExprNode expr){
         this.initializer = expr;
+    }
+
+    public void setIR(Expr expr){
+        this.ir = expr;
+    }
+
+    public Expr ir(){
+        return ir;
     }
 
     public <T> T accept(EntityVisitor<T> visitor) {

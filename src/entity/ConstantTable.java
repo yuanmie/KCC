@@ -13,9 +13,6 @@ public class ConstantTable implements Iterable<ConstantEntry> {
         table = new LinkedHashMap<String, ConstantEntry>();
     }
 
-    public boolean IsEmpty(){
-        return table.isEmpty();
-    }
 
     public ConstantEntry intern(String s){
         ConstantEntry ent = table.get(s);
@@ -43,5 +40,9 @@ public class ConstantTable implements Iterable<ConstantEntry> {
             table.put(identifier+String.valueOf(s), ent);
         }
         return ent;
+    }
+
+    public boolean isEmpty() {
+        return table.isEmpty();
     }
 }

@@ -1,5 +1,8 @@
 package entity;
 
+import asm.ImmediateValue;
+import asm.MemoryReference;
+import asm.Operand;
 import ast.ExprNode;
 import ast.TypeNode;
 import compiler.TypeResolver;
@@ -10,6 +13,8 @@ abstract public class Entity {
     protected boolean isPrivate;
     protected TypeNode typeNode;
     protected long nRefered;
+    protected MemoryReference memref;
+    protected Operand address;
 
     public Entity(boolean priv, TypeNode type, String name){
         this.name = name;
@@ -73,5 +78,35 @@ abstract public class Entity {
         nRefered++;
     }
 
+    public void setMemref(MemoryReference mem){
+        this.memref = mem;
+    }
+
+    public MemoryReference memref(){
+        checkAddress();
+        return memref;
+    }
+
+    public void setAddress(MemoryReference mem){
+        this.address = mem;
+    }
+
+    public void setAddress(ImmediateValue imm){
+        this.address = imm;
+    }
+
+    public Operand address(){
+        checkAddress();
+        return address;
+    }
+
+    protected void checkAddress(){
+        if(memref == null && address == null){
+            throw new Error("address did not resolved: " + name);
+        }
+    }
+
     abstract public <T> T accept(EntityVisitor<T> visitor);
+
+
 }
