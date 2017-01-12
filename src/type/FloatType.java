@@ -42,4 +42,8 @@ public class FloatType extends Type{
     public boolean isCastableTo(Type target) {
         return target.isFloat() || target.isInteger() || target.isInt();
     }
+
+    public boolean isSigned(){
+        return true;
+    }
 }

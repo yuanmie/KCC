@@ -4,6 +4,7 @@ import asm.ImmediateValue;
 import asm.MemoryReference;
 import asm.Type;
 import entity.ConstantEntry;
+import entity.ConstantTable;
 
 public class Float extends Expr{
     protected double value;
@@ -15,6 +16,11 @@ public class Float extends Expr{
         this.value = value;
     }
 
+    public Float(Type type, ConstantEntry entry){
+        super(type);
+        this.entry = entry;
+
+    }
     public double value(){
         return value;
     }
