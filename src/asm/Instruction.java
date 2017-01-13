@@ -12,8 +12,8 @@ public class Instruction extends Assembly{
     }
 
     public Instruction(String mnemonic, String suffix,
-                       Operand a1, Operand a2){
-        this(mnemonic, suffix, new Operand[]{a1, a2});
+                       Operand a1){
+        this(mnemonic, suffix, new Operand[]{a1});
     }
 
     public Instruction(String mnemonic, String suffix,
@@ -25,6 +25,11 @@ public class Instruction extends Assembly{
 
     public Instruction build(String mnemonic, Operand a1, Operand a2){
         return new Instruction(mnemonic, this.suffix,
+                new Operand[]{a1, a2});
+    }
+
+    public Instruction(String mnemonic, String suffix, Operand a1, Operand a2){
+        this(mnemonic, suffix,
                 new Operand[]{a1, a2});
     }
 

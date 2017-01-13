@@ -63,4 +63,8 @@ public class IndirectMemoryReference extends MemoryReference{
     public int compareTo(MemoryReference mem) {
         return -(mem.compareTo(this));
     }
+
+    public static IndirectMemoryReference relocatable(long offset, Register base) {
+        return new IndirectMemoryReference(new IntegerLiteral(offset), base, false);
+    }
 }

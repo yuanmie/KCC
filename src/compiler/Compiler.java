@@ -4,6 +4,8 @@ import ast.AST;
 
 import ir.IR;
 import parser.Parser;
+import sysdep.AssemblyCode;
+import sysdep.CodeGenerator;
 import type.TypeTable;
 
 import java.io.File;
@@ -36,6 +38,11 @@ public class Compiler {
         TypeTable types = TypeTable.ilp32();
         AST sem = semanticAnalyze(ast, types, opts);
         IR ir = new IRGenerator(types).generate(sem);
+        AssemblyCode asm = generateAssembly(ir, opts);
+    }
+
+    private AssemblyCode generateAssembly(IR ir, Options opts) {
+        return new CodeGenerator().generator(ir);
     }
 
     private AST semanticAnalyze(AST ast, TypeTable types, Options opts) {
