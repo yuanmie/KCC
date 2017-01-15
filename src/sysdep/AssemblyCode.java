@@ -111,7 +111,7 @@ public class AssemblyCode {
         directive(".globl " + sym.name());
     }
 
-    void _locl(Symbol sym){
+    void _local(Symbol sym){
         directive(".local " + sym.name());
     }
 
@@ -454,7 +454,7 @@ public class AssemblyCode {
     void shr(Register bits, Register base) {
         insn(base.type, "shr", bits, base);
     }
-    private class VirtualStack {
+     class VirtualStack {
         private long offset;
         private long max;
         private List<IndirectMemoryReference> memrefs = new ArrayList<>();

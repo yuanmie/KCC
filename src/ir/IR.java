@@ -62,7 +62,7 @@ public class IR {
         return !definedGlobalVariables().isEmpty();
     }
 
-    private List<DefinedVariable> definedGlobalVariables() {
+    public List<DefinedVariable> definedGlobalVariables() {
         if(gvars == null){
             initVariables();
         }
@@ -73,7 +73,7 @@ public class IR {
         return !definedCommonSymbols().isEmpty();
     }
 
-    private List<DefinedVariable> definedCommonSymbols() {
+    public List<DefinedVariable> definedCommonSymbols() {
         if(comms == null){
             initVariables();
         }

@@ -1,5 +1,6 @@
 package compiler;
 
+import asm.Type;
 import ast.AST;
 
 import ir.IR;
@@ -42,7 +43,7 @@ public class Compiler {
     }
 
     private AssemblyCode generateAssembly(IR ir, Options opts) {
-        return new CodeGenerator().generator(ir);
+        return new CodeGenerator(Type.INT32).generator(ir);
     }
 
     private AST semanticAnalyze(AST ast, TypeTable types, Options opts) {
