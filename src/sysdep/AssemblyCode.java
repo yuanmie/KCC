@@ -1,6 +1,7 @@
 package sysdep;
 
 import asm.*;
+import utils.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +93,7 @@ public class AssemblyCode {
     }
 
     void _file(String name){
-        directive(".file\t" + name);
+        directive(".file\t" + TextUtils.dumpString(name));
     }
 
     void _text(){
@@ -172,7 +173,7 @@ public class AssemblyCode {
     }
 
     void _string(String str){
-        directive("\t.string\t" + str);
+        directive("\t.string\t" + TextUtils.dumpString(str));
     }
 
     void _float(Long val){
@@ -488,7 +489,7 @@ public class AssemblyCode {
             return mem;
         }
 
-        private IndirectMemoryReference relocatableMem(long l, Register base) {
+        private IndirectMemoryReference relocatableMem(long offset, Register base) {
             return IndirectMemoryReference.relocatable(offset, base);
         }
 

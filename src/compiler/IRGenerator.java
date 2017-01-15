@@ -551,7 +551,7 @@ public class IRGenerator implements ASTVisitor<Void, Expr>{
 
     @Override
     public Expr visit(OpAssignNode node) {
-        Expr rhs = transformExpr(node.lhs());
+        Expr rhs = transformExpr(node.rhs());
         Expr lhs = transformExpr(node.lhs());
         Type t = node.lhs().type();
         Op op = Op.internBinary(node.operator(), t.isSigned());

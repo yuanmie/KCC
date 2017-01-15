@@ -7,7 +7,7 @@ public class FloatType extends Type{
 
     public FloatType(long size, String name){
         super();
-        this.size = size;
+        this.size = internSize;
         this.name = name;
     }
 
@@ -44,6 +44,6 @@ public class FloatType extends Type{
     }
 
     public boolean isSigned(){
-        return true;
+        return false;
     }
 }

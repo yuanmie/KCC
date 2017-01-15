@@ -21,6 +21,6 @@ public class Label extends Assembly{
 
     @Override
     public String toSource(SymbolTable table) {
-        return null;
+        return symbol.toSource(table) +":";
     }
 }
