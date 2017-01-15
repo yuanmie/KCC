@@ -31,6 +31,7 @@ public class GNULinker{
         cmd.add("-lc");
         cmd.add("/usr/lib32/crtn.o");
         cmd.add("-o");
+        cmd.add("a.out");
         cmd.add(destPath);
         CommandUtils.invoke(cmd);
     }

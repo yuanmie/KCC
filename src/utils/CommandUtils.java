@@ -4,12 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 
 abstract public class CommandUtils {
     static public void invoke(List<String> cmdArgs){
         try {
             String[] cmd = cmdArgs.toArray(new String[] {});
+            System.out.println(Arrays.toString(cmd));
             Process proc = Runtime.getRuntime().exec(cmd);
             proc.waitFor();
             passThrough(proc.getInputStream());

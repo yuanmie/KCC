@@ -26,7 +26,7 @@ public class Options {
     }
 
     public String asmFileNameOf(File file) {
-        String filename = file.getName();
+        String filename = file.getAbsolutePath() + "/" + file.getName();
         return filename.substring(0, filename.indexOf('.')) + ".S";
     }
 }
