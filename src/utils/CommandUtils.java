@@ -11,7 +11,6 @@ abstract public class CommandUtils {
     static public void invoke(List<String> cmdArgs){
         try {
             String[] cmd = cmdArgs.toArray(new String[] {});
-            System.out.println(Arrays.toString(cmd));
             Process proc = Runtime.getRuntime().exec(cmd);
             proc.waitFor();
             passThrough(proc.getInputStream());

@@ -22,7 +22,7 @@ public class GNULinker{
         List<String> cmd = new ArrayList<String>();
         cmd.add(LINKER);
         cmd.add("-m");
-        cmd.add("-elf_i386");
+        cmd.add("elf_i386");
         cmd.add("-dynamic-linker");
         cmd.add(DYNAMIC_LINKER);
         cmd.add(C_RUNTIME_START);

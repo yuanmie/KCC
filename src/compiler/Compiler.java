@@ -54,7 +54,6 @@ public class Compiler {
         AST sem = semanticAnalyze(ast, types, opts);
         IR ir = new IRGenerator(types).generate(sem);
         AssemblyCode asm = generateAssembly(ir, opts);
-        System.out.println(asm.toSource());
         writeFile(destPath, asm.toSource());
     }
 

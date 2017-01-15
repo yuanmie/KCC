@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BuildingSansIDE" default="run" basedir=".">
+   <description>Building Simple Java Applications Without An IDE</description>
+ 
+   <target name="compile"
+           description="Compile the Java code.">
+      <javac srcdir="~/KCC/src"
+             destdir="classes"
+             debug="true"
+      includeantruntime="false" />
+   </target>
+ 
+   <target name="run" depends="compile"
+           description="Run the Java application.">
+      <java classname="compiler.Compiler" fork="true">
+         <classpath>
+           <pathelement path="classes"/>
+         </classpath>
+      </java>
+   </target>
+</project>
