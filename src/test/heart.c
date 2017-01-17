@@ -3,6 +3,7 @@ extern int printf(char *format, ...);
 int main() {
     float x;
     float y;
+    x = 0.0f;
     float a, b;
     for ( y = 1.5f; y > -1.5f; y -= 0.1f) {
         for ( x = -1.5f; x < 1.5f; x += 0.05f) {

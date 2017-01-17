@@ -8,6 +8,7 @@ import type.*;
 import java.io.*;
 import java.util.*;
 
+import static javafx.scene.input.KeyCode.L;
 import static parser.TOK.TK_RETURN;
 
 public class Parser {
@@ -1378,11 +1379,19 @@ public class Parser {
 
     private BlockNode block() {
 
-        List<DefinedVariable> vars;
-        List<StmtNode> stmts;
+        List<DefinedVariable> vars = new ArrayList<>();
+        List<StmtNode> stmts = new ArrayList<>();
         Expect(TOK.TK_LBRACE);
-        vars = defvar_list();
-        stmts = stmts();
+        while(TOK.TK_CURRENT != TOK.TK_RBRACE){
+            token.BeginPeekToken();
+            if(typeref() != null){
+                token.EndPeekToken();
+                vars.addAll(defvar_list());
+            }else{
+                token.EndPeekToken();
+                stmts.addAll(stmts());
+            }
+        }
         Expect(TOK.TK_RBRACE);
         return new BlockNode(vars, stmts);
     }
@@ -1390,11 +1399,8 @@ public class Parser {
     private List<StmtNode> stmts() {
         List<StmtNode> ss = new ArrayList<StmtNode>();
         StmtNode s;
-
-        while (TOK.TK_CURRENT != TOK.TK_RBRACE) {
-            s = ParseStatement();
-            if (s != null) ss.add(s);
-        }
+        s = ParseStatement();
+        if (s != null) ss.add(s);
         return ss;
     }
 
@@ -1545,7 +1551,9 @@ public class Parser {
         Token t;
         ParamTypeRefs params;
         ref = typeref_base();
-        if(ref == null) return null;
+        if(ref == null){
+            return null;
+        }
         while (true) {
             if (TOK.TK_CURRENT == TOK.TK_MUL) {
                 next_token();
