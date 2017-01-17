@@ -67,18 +67,8 @@ public class Parser {
             case TOK.TK_LDOUBLECONST:
                 expr = floatNode(token.stringValue);// 123.456L	123.456l
 
-                //CREATE_AST_NODE(expr, Expression);
-                /**
-                 see type.h  , enum{...,ULONGLONG,ENUM,FLOAT,}
-                 */
                 if (TOK.TK_CURRENT >= TOK.TK_FLOATCONST)
                     TOK.TK_CURRENT++;
-
-                /// nasty, requires that both from TOK.TK_INTCONST to TOK.TK_LDOUBLECONST
-                /// and from INT to LDOUBLE are consecutive
-//                expr->ty = T(INT + TOK.TK_CURRENT - TOK.TK_INTCONST);
-//                expr->op = OP_CONST;
-//                expr->val = TokenValue;
                 TOK.TK_CURRENT = token.nextToken();
                 return expr;
 
@@ -1710,29 +1700,7 @@ public class Parser {
         }
     }
 
-    /*    Declarations declaration_file()
-        {
-            Declarations impdecls, decls = new Declarations();
-            UndefinedFunction funcdecl;
-            UndefinedVariable vardecl;
-            Constant defconst;
-            StructNode defstruct;
-            UnionNode defunion;
-            TypedefNode typedef;
 
-            ( LOOKAHEAD(<EXTERN> typeref() <IDENTIFIER> "(")
-            funcdecl=funcdecl()   { decls.addFuncdecl(funcdecl); }
-            | vardecl=vardecl()     { decls.addVardecl(vardecl); }
-            | defconst=defconst()   { decls.addConstant(defconst); }
-            | defstruct=defstruct() { decls.addDefstruct(defstruct); }
-            | defunion=defunion()   { decls.addDefunion(defunion); }
-            | typedef=typedef()     { decls.addTypedef(typedef); }
-            )*
-            <EOF>
-                {
-            return decls;
-            }
-        }*/
     Declarations parseDecl(){
         Declarations  decls = new Declarations();
         while(TOK.TK_CURRENT == TOK.TK_EXTERN){
@@ -1803,126 +1771,4 @@ public class Parser {
         return null;
     }
 
-  /*  public Parser(Token token){
-        this.token = token;
-    }
-    FunctionNode parse(){
-        return parseFunction();
-    }
-
-    FunctionNode parseFunction(){
-        storage();
-        typeRef();
-        String t = name();
-        //token.nextToken();
-        expect("(");
-        parseParam();
-        expect(")");
-        BlockNode b = parse_block();
-        return new FunctionNode(t,b);
-    }
-
-    private BlockNode parse_block() {
-        expect("{");
-        ReturnNode r = stmts();
-        expect("}");
-        return new BlockNode(r);
-    }
-
-    private void defvar_list() {
-        storage();
-        type();
-        name();
-    }
-
-    private ReturnNode stmts() {
-        return return_stms();
-    }
-
-    private ReturnNode return_stms() {
-        expect("return");
-        if(peek(";")){
-            token.nextToken();
-            return new ReturnNode(null);
-        }else{
-            ExprNode expr = expr();
-            expect(";");
-            return new ReturnNode(expr);
-
-        }
-    }
-
-    private ExprNode expr() {
-
-        String t = name();
-        return new ExprNode(new IntegerLiteralNode(Integer.parseInt(t)));
-    }
-
-
-
-    private void parseParam() {
-        if(token.peekToken().equals("void")){
-            token.nextToken();
-            if(token.peekToken().equals(")")){
-                token.nextToken();
-                return ;
-            }else{
-                name();
-                if(peek(")")) return;
-                else expect(",");
-            }
-        }
-
-        fixedParams();
-    }
-
-    private void fixedParams() {
-       param();
-       while(!peek(")")){
-           expect(",");
-           param();
-       }
-    }
-
-    private void param() {
-        type();
-        name();
-    }
-
-    private void type() {
-        typeRef();
-    }
-
-    private void typeRef() {
-        typeref_base();
-        while(peek("*")) token.nextToken();
-    }
-
-    private void typeref_base() {
-       if(Try("int") || Try("char"));
-    }
-
-    private void expect(String t) {
-        if(!token.peekToken().equals(t)){
-            throw new RuntimeException("expect " + t);
-        }else{
-            token.nextToken();
-        }
-    }
-
-    private boolean peek(String t){
-        return t.equals(token.peekToken());
-    }
-
-    private void storage() {
-        Try("static");
-    }
-
-    private boolean Try(String t) {
-        if(token.peekToken().equals(t)) {
-            token.nextToken();
-            return true;
-        }
-        return false;
-    }*/
 }
