@@ -1,7 +1,7 @@
 ##  KCC
 
 a simple c compiler in java.
-
+<b>It is a incomplete project.</b>
 
 acknowledge:
 
